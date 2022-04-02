@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\setlength{\parindent}{0pt}
+\newtheorem{definition}{定义}
+\newtheorem{thm}{定理}
+\newtheorem{lemma}{引理}
+\newtheorem{example}{例}
+\newtheorem{note}{注}
+\newtheorem{solution}{解}
+\newtheorem{corollary}{推论}
+\newtheorem{proposition}{性质}
+\lstset{language=Matlab}
+\lstset{breaklines}
+\lstset{extendedchars=false} %取消首行缩进
+\begin{document}
+\begin{center}
+    \LARGE
+    \textbf{切向量与切空间}\\
+    \vspace{0.2em}
+    \large
+\end{center}
+\section{切向量的第一种定义}
+\begin{definition}[切向量]
+    记$C^{\infty}(M)$为微分流形$M$上光滑函数的全体组成的向量空间。设$p \in M$，如果线性映射$X_{p}:C^{\infty}(M) \to \mathbb{R}$满足以下条件
+    $$
+    X_{p}(fg) = f(p)X_{p}g+g(p)X_{p}f, \quad \ \forall f,g \in C^{\infty}(M)
+    $$
+    则称$X_p$为$M$在$p$处的切向量
+\end{definition}
+\begin{definition}[切空间]
+    在$p$处的切向量的全体组成的向量空间称为$p$处的切空间，记为$T_{p}M$
+\end{definition}
+按照第一种方式定义的切向量可以理解为切向量是作用在光滑函数上，且满足导子性质的线性映射。所谓线性性质是指满足如下运算规则
+$$
+X_{p}(\alpha f + \beta g) = \alpha X_{p}(f)+\beta X_{p}(f), \quad \ \forall  \alpha,\beta \in \mathbb{R},f,g \in C^{\infty}(M)
+$$
+导子性质是指满足以下运算规则
+$$
+X_{p}(fg) = f(p)X_{p}g+g(p)X_{p}f, \quad \ \forall f,g \in C^{\infty}(M)
+$$
+\begin{proposition}
+    切向量作用在常值函数上为0
+\end{proposition}
+\begin{proof}
+    因为$X_{p}(1)=X_{p}(1.1)=X_{p}(1)+X_{p}(1)$，可以得到$X_{p}(1)=1$，设常值函数的值为$C$，则$X_{p}(C)=CX_{p}(1)=0$
+\end{proof}
+设$(U,\varphi)$为$p$附近的局部坐标系，$\{x^i\}$为坐标函数，在$p$处定义$n$个切向量$\frac{\partial}{\partial x^{i}}|_{p} \quad (1 \leq i \leq n)$
+$$
+\frac{\partial}{\partial x^{i}}|_{p}f=\frac{\partial f \circ \varphi^{-1}}{\partial x^{i}}(\varphi(p))\quad \ \forall f \in C^{\infty}(M)
+$$
+证明$\frac{\partial}{\partial x^{i}}|_{p}$是切向量只需证明其满足线性性和导子性即可。因为
+$$
+\begin{aligned}
+\frac{\partial}{\partial x^{i}}|_{p}(f+kg)&=\frac{\partial(f+kg)\circ \varphi^{-1}}{\partial x^i}(\varphi (p))\\
+&=\frac{\partial(f\circ \varphi^{-1}+kg\circ \varphi^{-1})}{\partial x^i}(\varphi (p))\\
+&=\frac{\partial(f\circ \varphi^{-1})}{\partial x^i}(\varphi (p))+k\frac{\partial(g\circ \varphi^{-1})}{\partial x^i}(\varphi (p))\\
+&=\frac{\partial}{\partial x^{i}}|_{p}f+k\frac{\partial}{\partial x^{i}}|_{p}g
+\end{aligned}
+$$
+等式利用了偏导数和复合运算的性质
+\begin{proposition}
+    $\left\{\frac{\partial}{\partial x^i}|_{p}\right\}_{i=1}^{n}$为$T_p(M)$的一组基，且${\rm dim}(T_pM)={\rm dim}(M)$
+\end{proposition}
+\begin{proof}
+    若$\sum_{i = 1}^{n}a_i \frac{\partial}{\partial x^i}|_{p}=0$，两边依次作用$x^j,(j=1,2,...,n)$，
+    因为
+    $$
+    \frac{\partial}{\partial x^i}|_{p}x^j=\delta_{ij}=\begin{cases}
+        1,\quad i=j,\\
+        0,\quad i \neq j
+    \end{cases}
+    $$
+    因此可以得到$a_i=0,(i=1,2,...,n)$，即$\left\{\frac{\partial}{\partial x^i}|_{p}\right\}_{i=1}^{n}$在$T_p(M)$中线性无关。
+    下证任意切向量$X_{p}$均可由$\left\{\frac{\partial}{\partial x^i}|_{p}\right\}_{i=1}^{n}$张成
+\end{proof}
+\end{document}
