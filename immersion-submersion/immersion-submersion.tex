@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\setlength{\parindent}{0pt}
+\newtheorem{definition}{定义}[section]
+\newtheorem{thm}{定理}[section]
+\newtheorem{lemma}{引理}[section]
+\newtheorem{example}{例}
+\newtheorem{note}{注}
+\newtheorem{solution}{解}
+\newtheorem{corollary}{推论}
+\newtheorem{proposition}{性质}[section]
+\lstset{language=Matlab}
+\lstset{breaklines}
+\lstset{extendedchars=false} %取消首行缩进
+\begin{document}
+\begin{center}
+    \LARGE
+    \textbf{浸入、淹没、嵌入及子流形}\\
+    \vspace{0.2em}
+    \large
+\end{center}
+\section{浸入}
+\section{子流形}
+\subsection{正则子流形的局部结构}
+正则子流形的结构非常简单
+\begin{proposition}
+    每个浸入子流形的局部结构是一个坐标片
+\end{proposition}
+下面给出两个证明流形的子集是嵌入子流形的充分条件
+\begin{thm}\label{submanifold-1}[淹没定理]
+    设$f:M^{m} \to N^{n}$为光滑映射，$q \in f(M)$。如果$f$在$A=f^{-1}(q)$上的每一点为淹没，则
+    $A$是$M$的$m-n$维闭正则子流形
+\end{thm}
+\begin{thm}[子浸入定理]
+    设$f:M^{m} \to N^{n}$为光滑映射，且${\rm rank} f \equiv r$。对于$q \in f(M)$，
+    $A=f^{-1}(q)$是$M$的$m-r$维闭正则子流形
+\end{thm}
+\section{Stiefel流形}
+\begin{definition}[${\rm Stiefel}$流形]
+    设${\rm St}(p,n) \ (p \leq n)$表示所有$n \times p$的正交矩阵的集合，即
+    $$
+    {\rm St}(p,n):=\{X \in \mathbb{R}^{n \times p}:X^TX=I_{p}\}
+    $$
+    其中$I_{p}$表示$p \times p$的单位矩阵。我们称${\rm St}(p,n)$为${\rm Stiefel}$流形
+\end{definition}
+\begin{proposition}
+    ${\rm Stiefel}$流形是$\mathbb{R}^{n \times p}$的嵌入子流形
+\end{proposition}
+\begin{proof}
+    考虑映射$f:\mathbb{R}^{n \times p} \to S_{p \times p}:X \mapsto X^TX-I_{p}$，其中$S_{p \times p}$表示
+    所有$p \times p$的对称矩阵。显然，${\rm St}(p,n)=f^{-1}(0_{p})\subset \mathbb{R}^{n \times p}$。下证$f$在${\rm St}(p,n)$中的每一点$X$都是浸入，即证明
+    ${\rm rank}(f)={\rm dim}(S_{p \times p})$。因为$f$的定义域和值域都为线性空间，因此计算$f$的秩不依赖坐标图。即
+    ${\rm rank}(f)=J(f)$，对于$f$来说，求${\rm jacobian}$矩阵就是对$f$求导，$f$在$X$点的导数为
+    $$
+    \begin{aligned}
+        Df(X)[Z]&=\lim_{\alpha \to 0^+}\frac{f(X+\alpha Z)-f(X)}{\alpha}\\
+        &=\lim_{\alpha \to 0^+}\frac{(X+\alpha Z)^T(X+\alpha Z)-X^TX}{\alpha}\\
+        &=\lim_{\alpha \to 0^+}X^TZ+Z^TX+\alpha Z^TZ\\
+        &=X^TZ+Z^TX
+    \end{aligned}
+    $$
+    对任意$X \in {\rm St}(p,n)$，选取$\frac{1}{2}X\hat{Z}$作为方向，其中$\hat{Z} \in S_{p \times p}$，则
+    $$
+    Df(X)\left[\frac{1}{2}X\hat{Z}\right]=\hat{Z} 
+    $$
+    因为$X^TX=I_{p},{\hat{Z}}^T=\hat{Z}$。因此${\rm dim}(f)={\rm dim}(S_{p \times p})$，从而$f$是浸入。
+    由定理\ref{submanifold-1}可得，${\rm St}(p,n)$是$\mathbb{R}^{n \times p}$的嵌入子流形
+\end{proof}
+\end{document}
